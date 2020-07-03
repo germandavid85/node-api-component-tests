@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:e2e": "NODE_ENV=test jest --testRegex '(/(test/e2e)/.*\\.test)\\.js$'",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +23,12 @@
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
     "json-2-csv": "^3.7.5"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "node-fetch": "^2.6.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

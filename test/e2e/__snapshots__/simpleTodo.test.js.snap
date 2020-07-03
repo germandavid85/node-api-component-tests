@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple todo should return all the todos 1`] = `
+Array [
+  Object {
+    "createdAt": "Thu Jul 02 2020 18:46:22 GMT-0500 (Colombia Standard Time)",
+    "ready": "false",
+    "title": "this is a normal todo",
+    "updatedAt": "Thu Jul 02 2020 18:46:22 GMT-0500 (Colombia Standard Time)",
+  },
+  Object {
+    "createdAt": "Thu Jul 02 2020 18:46:34 GMT-0500 (Colombia Standard Time)",
+    "ready": "false",
+    "title": "w. this is a watson todo",
+    "updatedAt": "Thu Jul 02 2020 18:46:34 GMT-0500 (Colombia Standard Time)",
+  },
+]
+`;

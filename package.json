@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test:e2e": "NODE_ENV=test jest --testRegex '(/(test/e2e)/.*\\.test)\\.js$'",
+    "test:setupcomponentdb": "cat /dev/null > component-tests-db.csv",
+    "test:teardowncomponentdb": "cat /dev/null > component-tests-db.csv",
+    "test:component": "npm run test:setupcomponentdb & NODE_ENV=test jest --testRegex '(/(test/component)/.*\\.test)\\.js$' --forceExit && npm run test:teardowncomponentdb",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,7 +29,8 @@
   },
   "devDependencies": {
     "jest": "^26.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "supertest": "^4.0.2"
   },
   "jest": {
     "testEnvironment": "node"

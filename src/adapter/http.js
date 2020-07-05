@@ -11,7 +11,7 @@ module.exports = {
   init
 }
 
-function init({ useCases }) {
+function init({ config, useCases }) {
   app.get('/todos', async (req, res) => {
     const allItems = await useCases.getAllItems();
 
@@ -25,11 +25,11 @@ function init({ useCases }) {
     res.json(todoToHTTPObject(newTodoDomain));
   });
 
-  app.listen(3000, () => {
-    console.log('TODO app listening on port 3000!');
+  app.listen(config.httpPort, () => {
+    console.log(`TODO app listening on port ${config.httpPort}!`);
   });
 
-  return app
+  return app;
 }
 
 function todoToDomainObject(todoHTTPObject) {

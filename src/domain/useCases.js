@@ -17,7 +17,7 @@ function handler({ dataAccess, watsonDataAccess }) {
     const savedObject = await dataAccess.saveTodoItem(todoDomainObject);
 
     if (todoDomainObject.title.startsWith('w.')) {
-      watsonDataAccess.saveData(todoDomainObject);
+      await watsonDataAccess.saveData(todoDomainObject);
     }
 
     return savedObject;

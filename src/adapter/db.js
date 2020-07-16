@@ -1,6 +1,7 @@
 const fs = require('fs');
 const csvtojson = require('csvtojson');
 const csvConverter = require('json-2-csv');
+const dbMapper = require('./dbMapper');
 
 module.exports = {
   init
@@ -13,7 +14,7 @@ function init({ connectionString }) {
   }
 
   async function saveTodoItem(todoDomainObject) {
-    const dbObject = todoToDBObject(todoDomainObject);
+    const dbObject = dbMapper.todoToDBObject(todoDomainObject);
     const currentDB = fs.readFileSync(connectionString, 'utf-8');
     const parsedDBObject = await csvtojson().fromString(currentDB);
 
@@ -21,7 +22,7 @@ function init({ connectionString }) {
 
     await writeFile(parsedDBObject, connectionString);
 
-    return todoToDomainObject(dbObject);
+    return dbMapper.todoToDomainObject(dbObject);
   }
 
   async function getAllItems() {
@@ -29,28 +30,7 @@ function init({ connectionString }) {
     const parsedDBObject = await csvtojson().fromString(currentDB)
 
     return parsedDBObject
-      .map(todoToDomainObject)
-  }
-
-  function todoToDBObject(todoDomainObject) {
-    const createdAt = todoDomainObject.createdAt || new Date();
-    const updatedAt = new Date();
-
-    return {
-      title: todoDomainObject.title,
-      ready: todoDomainObject.ready,
-      createdAt,
-      updatedAt
-    };
-  }
-
-  function todoToDomainObject(todoDBObject) {
-    return {
-      title: todoDBObject.title,
-      ready: todoDBObject.ready,
-      createdAt: todoDBObject.createdAt,
-      updatedAt: todoDBObject.updatedAt
-    };
+      .map(dbMapper.todoToDomainObject)
   }
 
   function writeFile(object, filePath) {

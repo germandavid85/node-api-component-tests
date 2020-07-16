@@ -4,7 +4,7 @@ describe('simple todo', () => {
   let allTheNotes;
 
   beforeAll(async () => {
-    const response = await fetch('http://localhost:3000/todos');
+    const response = await fetch('http://localhost:3001/todos');
 
     allTheNotes = await response.json();
   });

@@ -7,9 +7,11 @@
     "test:e2e": "NODE_ENV=test jest --testRegex '(/(test/e2e)/.*\\.test)\\.js$'",
     "test:setupcomponentdb": "cat /dev/null > component-tests-db.csv",
     "test:teardowncomponentdb": "cat /dev/null > component-tests-db.csv",
+    "test:setupintegrationdb": "cat /dev/null > integration-tests-db.csv",
+    "test:teardownintegrationtdb": "cat /dev/null > integration-tests-db.csv",
     "test:component": "npm run test:setupcomponentdb & NODE_ENV=test jest --testRegex '(/(test/component)/.*\\.test)\\.js$' --forceExit && npm run test:teardowncomponentdb",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test npm run test:setupintegrationdb & NODE_ENV=test jest --testRegex '(/(test/unit|integration)/.*\\.test)\\.js$' --coverage && npm run test:teardownintegrationtdb"
   },
   "repository": {
     "type": "git",
